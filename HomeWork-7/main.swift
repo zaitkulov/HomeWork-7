@@ -131,3 +131,83 @@ let sportCar = SportCar(brand: "Aston Martin", maxSpeed: 519)
 trunkCar.performAction()
 sportCar.performAction()
 
+//5.Задание: Создание объектов и выполнение действий
+
+enum CarAction {
+    case startEngine
+    case stopEngine
+    case loadCargo(volume: Int)
+    case unloadCargo(volume: Int)
+}
+class Car {
+    var brand: String
+    var year: Int
+    
+    init(brand: String, year: Int) {
+        self.brand = brand
+        self.year = year
+    }
+    func displayProperties() {
+        print ("Марка \(brand), год \(year)")
+    }
+}
+class TrunkCar: Car {
+    var cargoVolume: Int
+    
+    init(brand: String, year: Int, cargoVolume: Int) {
+        self.cargoVolume = cargoVolume
+        super.init(brand: brand, year: year)
+    }
+    override func displayProperties() {
+        super.displayProperties()
+        print ("Объем багажника - \(cargoVolume) тонн")
+    }
+    func performAction(for action: CarAction) {
+        switch action {
+        case.startEngine:
+            print("Запуск двигателя грузовика")
+        case.stopEngine:
+            print("Остановка двигателя грузовика")
+        case.loadCargo(let volume):
+            cargoVolume += volume
+            print("В грузовик погрузили \(volume) тонн")
+        case.unloadCargo(let volume):
+            cargoVolume -= volume
+            print("Из грузовика выгрузили \(volume) тонн")
+        }
+    }
+}
+    class SportCar: Car {
+        var isActiveSportMode: Bool
+        
+        init(brand: String, year: Int, isActiveSportMode: Bool) {
+            self.isActiveSportMode = isActiveSportMode
+            super.init(brand: brand, year: year)
+        }
+        override func displayProperties() {
+            super.displayProperties()
+            let activeSportMode = isActiveSportMode ? "SPORT MODE - ON" : "SPORT MODE - OFF"
+            print (activeSportMode)
+        }
+        func performAction(for action: CarAction) {
+            switch action {
+            case.startEngine:
+                print("Запуск двигателя спорткара")
+            case.stopEngine:
+                print("Остановка двигателя спорткара")
+            default:
+                print("Эта функция не доступна в данном автомобиле")
+            }
+        }
+    }
+    let trunkCar = TrunkCar(brand: "SCANIA", year: 2020, cargoVolume: 25)
+let sportCar = SportCar(brand: "Nissan GTR", year: 2022, isActiveSportMode: true)
+
+trunkCar.performAction(for: .startEngine)
+trunkCar.performAction(for: .loadCargo(volume: 15))
+trunkCar.displayProperties()
+
+sportCar.performAction(for: .startEngine)
+sportCar.displayProperties()
+
+
