@@ -75,3 +75,21 @@ sportCar.startEngine()
 sportCar.accelerate()
 print("Максимальная скорость: \(sportCar.maxSpeed) км/ч")
 
+//3.Расширение enum с действиями
+
+enum CarAction {
+    case start
+    case stop
+    case accelerate
+    case brake
+    case loadCargo
+    case unloadCargo
+    case activateSportMode
+    case deactivateSportMode
+}
+
+let trunkCarAction: CarAction = .loadCargo
+let sportCarAction: CarAction = .activateSportMode
+
+
+
