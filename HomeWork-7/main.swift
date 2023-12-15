@@ -92,4 +92,42 @@ let trunkCarAction: CarAction = .loadCargo
 let sportCarAction: CarAction = .activateSportMode
 
 
+//4.Переопределение методов в подклассах
+
+class Car {
+    var brand: String
+    
+    init(brand: String) {
+        self.brand = brand
+    }
+    func performAction() {
+        print ("Общее действие для всех автомобилей")
+    }
+}
+class SportCar: Car {
+    var maxSpeed: Int
+    init(brand: String, maxSpeed: Int) {
+        self.maxSpeed = maxSpeed
+        super.init(brand: brand)
+    }
+    override func performAction() {
+        print("Ускорение на спортивном автомобиле \(brand) до \(maxSpeed) км/ч")
+    }
+}
+class TrunkCar: Car {
+    var cargoCapacity: Int
+    
+    init(brand: String, cargoCapacity: Int) {
+        self.cargoCapacity = cargoCapacity
+        super.init(brand: brand)
+    }
+    override func performAction() {
+        print ("Погрузка в фуру фирмы \(brand) с максимальной грузоподъемностью \(cargoCapacity) тонн")
+    }
+}
+let trunkCar = TrunkCar(brand: "Mercedes", cargoCapacity: 40)
+let sportCar = SportCar(brand: "Aston Martin", maxSpeed: 519)
+
+trunkCar.performAction()
+sportCar.performAction()
 
